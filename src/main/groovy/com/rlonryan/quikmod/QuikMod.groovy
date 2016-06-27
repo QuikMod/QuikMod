@@ -6,13 +6,11 @@ import org.gradle.api.Plugin
 class QuikMod implements Plugin<Project> {
 	
     void apply(Project target) {
-
+		
 		// Apply ForgeGradle
 		target.apply(plugin:'net.minecraftforge.gradle.forge')
-		target.apply(plugin:'java')
-        target.task('modInfo', type: ModInfoTask)
-		target.ext.mod = new Properties()
-		target.mod.load(new FileInputStream("mod.properties"))
+		ModPropertiesLoader.loadModProperties(target)
+		target.task('modInfo', type: ModInfoTask)
 		
 		// Fetch mod settings
 		def mod = target.mod
@@ -48,21 +46,21 @@ class QuikMod implements Plugin<Project> {
 			inputs.property "mcversion", project.minecraft.version
 
 			// replace stuff in mcmod.info, nothing else
-			from(sourceSets.main.resources.srcDirs) {
+			from(target.sourceSets.main.resources.srcDirs) {
 				include 'mcmod.info'
 				expand 'version':project.version, 'mcversion':project.minecraft.version
 			}
 
-			from(sourceSets.main.resources.srcDirs) {
+			from(target.sourceSets.main.resources.srcDirs) {
 				exclude 'mcmod.info'
 			}
 		}
 		
 		// Add login options to runClient
 		target.runClient {
-			if( project.hasProperty('minecraft_username') && project.hasProperty('minecraft_password') ) {
-				args "--username=${project.minecraft_username}"
-				args "--password=${project.minecraft_password}"
+			if( target.hasProperty('minecraft_username') && target.hasProperty('minecraft_password') ) {
+				args "--username=${target.minecraft_username}"
+				args "--password=${target.minecraft_password}"
 			}
 		}
     }

@@ -1,23 +1,22 @@
 // First, apply the publishing plugin
-buildscript {
-  repositories {
-    maven {
-      url "https://plugins.gradle.org/m2/"
-    }
-  }
-  dependencies {
-    classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
-  }
+plugins {
+	id 'groovy'
+	id "com.gradle.plugin-publish" version "0.9.4"
 }
 
-apply plugin: "com.gradle.plugin-publish"
-apply plugin: 'groovy'
+// Config
+group = 'com.rlonryan'
+version = '0.0.3'
 
+// Dependencies
 dependencies {
     compile gradleApi()
     compile localGroovy()
+	compile 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    testCompile 'junit:junit:4.12'
 }
 
+// Repos
 repositories {
     mavenCentral()
 	maven {
@@ -26,16 +25,7 @@ repositories {
 	}
 }
 
-dependencies {
-    testCompile 'junit:junit:4.12'
-	compile 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-}
-
-group = 'com.rlonryan'
-version = '1.0-SNAPSHOT-ALPHA'
-
-// The configuration example below shows the minimum required properties
-// configured to publish your plugin to the plugin portal
+// Plugin Publishing
 pluginBundle {
   website = 'https://github.com/RlonRyan'
   vcsUrl = 'https://github.com/RlonRyan/QuikMod'
@@ -43,7 +33,7 @@ pluginBundle {
   tags = ['Forge', 'ForgeGradle', 'Minecraft']
 
   plugins {
-    greetingsPlugin {
+    quickMod {
       id = 'com.rlonryan.quikmod'
       displayName = 'QuikMod'
     }

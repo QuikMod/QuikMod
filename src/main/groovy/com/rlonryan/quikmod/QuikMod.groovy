@@ -12,27 +12,24 @@ class QuikMod implements Plugin<Project> {
 		ModPropertiesLoader.loadModProperties(target)
 		target.task('modInfo', type: ModInfoTask)
 		
-		// Fetch mod settings
-		def mod = target.mod
-		
-		target.sourceCompatibility = mod.version_java
-		target.targetCompatibility = mod.version_java
-		target.version = "${mod.version_major}.${mod.version_minor}.${mod.version_patch}"
-		mod.version = target.version
-		target.group = "${mod.group}.${mod.id}"
-		target.archivesBaseName = mod.id
+		target.sourceCompatibility = target.mod.version_java
+		target.targetCompatibility = target.mod.version_java
+		target.mod.version = "${target.mod.version_major}.${target.mod.version_minor}.${target.mod.version_patch}"
+		target.version = target.mod.version
+		target.group = "${target.mod.group}.${target.mod.id}"
+		target.archivesBaseName = target.mod.id
 		
 		// Handle Forge Stuff
 		target.minecraft {
-			version = "${mod.version_minecraft}-${mod.version_forge}"
-			mappings = mod.version_mappings
-			runDir = "/run/${mod.version_minecraft}"
+			version = "${target.mod.version_minecraft}-${target.mod.version_forge}"
+			mappings = target.mod.version_mappings
+			runDir = "/run/${target.mod.version_minecraft}"
 			makeObfSourceJar = false
 			useDepAts = true
 
 			// Replace mod information in reference class.
-			replaceIn mod.reference_class
-			mod.each { prop ->
+			replaceIn target.mod.reference_class
+			target.mod.each { prop ->
 				replace "\${mod.${prop.key}}", prop.value
 				replace "/*^", "\""
 				replace "^*/", "\"; // Default:"

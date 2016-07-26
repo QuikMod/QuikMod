@@ -6,7 +6,7 @@ plugins {
 
 // Config
 group = 'com.rlonryan'
-version = '1.0.5'
+version = '1.0.10'
 
 // Dependencies
 dependencies {

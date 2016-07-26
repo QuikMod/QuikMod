@@ -1,0 +1,21 @@
+package ${package};
+
+/**
+ * This class is fine.
+ *
+ */
+public interface Reference {
+
+	String MOD_NAME = /*^${mod.name}^*/ "Default Mod";
+	String MOD_ID = /*^${mod.id}^*/ "default";
+	String AUTHOR = /*^${mod.author}^*/ "Captain Nemo";
+
+	String VER_MAJOR = /*^${mod.version_major}^*/ "0";
+	String VER_MINOR = /*^${mod.version_minor}^*/ "0";
+	String VER_PATCH = /*^${mod.version_patch}^*/ "0";
+	String MOD_VERSION = /*^${mod.version}^*/ "0.0.0";
+	String VERSION = /*^${mod.version_minecraft}-${mod.version}^*/ "0.0-0.0.0";
+	
+	String UPDATE_URL = /*^${mod.update_url}^*/ "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+}

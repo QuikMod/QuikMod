@@ -11,6 +11,9 @@ class QuikMod implements Plugin<Project> {
 		target.apply(plugin:'net.minecraftforge.gradle.forge')
 		ModPropertiesLoader.loadModProperties(target)
 		target.task('modInfo', type: ModInfoTask)
+		target.task('netbeans', type: NetbeansTask)
+		target.task('travis', type: TravisTask)
+		target.task('generate', type: GenerateTask)
 		
 		target.sourceCompatibility = target.mod.version_java
 		target.targetCompatibility = target.mod.version_java
@@ -39,13 +42,14 @@ class QuikMod implements Plugin<Project> {
 		// Correct Resources
 		target.processResources {
 			// this will ensure that this task is redone when the versions change.
-			inputs.property "version", project.version
-			inputs.property "mcversion", project.minecraft.version
+			inputs.property "mod", project.mod
 
 			// replace stuff in mcmod.info, nothing else
 			from(target.sourceSets.main.resources.srcDirs) {
 				include 'mcmod.info'
-				expand 'version':project.version, 'mcversion':project.minecraft.version
+				project.mod.each { prop ->
+					expand "mod.${prop.key}":prop.value
+				}
 			}
 
 			from(target.sourceSets.main.resources.srcDirs) {

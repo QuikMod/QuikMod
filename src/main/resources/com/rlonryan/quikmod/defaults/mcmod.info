@@ -1,0 +1,22 @@
+[
+	{
+		"modid": "${mod.id}",
+		"name": "${mod.name}",
+
+		"version": "${mod.version}",
+		"mcversion": "${mod.version}",
+
+		"logoFile": "",
+		"screenshots": [],
+
+		"parent":"",
+		"dependencies": [],
+
+		"authorList": [ "${mod.author}" ],
+		"credits": "QuikMod",
+
+		"url": "${mod.url}",
+
+		"description": "A basic QuikMod."
+	}
+]

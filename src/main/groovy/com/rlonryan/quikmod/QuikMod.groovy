@@ -56,6 +56,21 @@ class QuikMod implements Plugin<Project> {
 			}
 		}
 		
+		// Add Shading Abilities
+		target.configurations {
+			shade
+			compile.extendsFrom shade
+		}
+		
+		// Enable Jar Shading
+		target.jar {
+			target.configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
+				from (target.zipTree(artifact)) {
+					exclude 'META-INF', 'META-INF/**'
+				}
+			}
+		}
+		
 		// Add login options to runClient
 		target.runClient {
 			if( target.hasProperty('minecraft_username') && target.hasProperty('minecraft_password') ) {

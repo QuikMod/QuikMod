@@ -11,7 +11,6 @@ class QuikModTest {
     public void testAddTasksToProject() {
         Project project = ProjectBuilder.builder().build()
         project.pluginManager.apply 'com.rlonryan.quikmod'
-
         assertTrue(project.tasks.modInfo instanceof ModInfoTask)
     }
 	

@@ -15,12 +15,12 @@ class ModPropertiesLoader {
 		def mod = new Properties()
 		def file = new File("${target.getRootDir()}/mod.properties")
 		if(!file.exists()) {
-			file.createNewFile()
+			defaults.store(file.newWriter(), "QuikMod Mod Properties")
 		}
 		mod.load(file.newReader())
 		
 		defaults.each{ prop ->
-			if (!mod.hasProperty(prop.key)) {
+			if (mod.getProperty(prop.key) == null) {
 				println "Missing mod property: ${prop.key}!"
 				mod.put(prop.key, prop.value)
 			}

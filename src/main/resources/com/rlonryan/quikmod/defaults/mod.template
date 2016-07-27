@@ -1,16 +1,22 @@
-package ${package};
+/*
+*/
+package ${mod_package};
 
+import ${ref_package}.${ref_class};
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
+/*
+ * QuikMod Default Mod File.
+ */
 @Mod(
-		modid = Reference.MOD_ID,
-		name = Reference.MOD_NAME,
-		version = Reference.MOD_VERSION,
-		updateJSON = Reference.UPDATE_URL
+		modid = ${ref_class}.MOD_ID,
+		name = ${ref_class}.MOD_NAME,
+		version = ${ref_class}.MOD_VERSION,
+		updateJSON = ${ref_class}.UPDATE_URL
 )
-public class ${class} {
+public class ${mod_class} {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {

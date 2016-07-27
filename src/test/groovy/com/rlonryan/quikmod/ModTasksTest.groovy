@@ -3,6 +3,7 @@ package com.rlonryan.quikmod
 import org.junit.Test
 import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.api.Project
+import com.rlonryan.quikmod.tasks.*;
 import static org.junit.Assert.*
 
 class ModTasksTest {

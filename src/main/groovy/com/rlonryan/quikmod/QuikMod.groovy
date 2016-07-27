@@ -2,6 +2,7 @@ package com.rlonryan.quikmod
 
 import org.gradle.api.Project
 import org.gradle.api.Plugin
+import com.rlonryan.quikmod.tasks.*;
 
 class QuikMod implements Plugin<Project> {
 	
@@ -31,6 +32,7 @@ class QuikMod implements Plugin<Project> {
 			useDepAts = true
 
 			// Replace mod information in reference class.
+			// Has to be done this way due to Forge + Gradle Limitations
 			replaceIn target.mod.reference_class
 			target.mod.each { prop ->
 				replace "\${mod.${prop.key}}", prop.value
@@ -47,10 +49,7 @@ class QuikMod implements Plugin<Project> {
 			// replace stuff in mcmod.info, nothing else
 			filesMatching('**/mcmod.info') {
 				filter {
-					project.mod.each { prop ->
-						it = it.replace('${mod.' + prop.key + '}', prop.value)
-					}
-					return it
+					return ModUtil.replaceModProps(project.mod, it)
 				}
 			}
 		}

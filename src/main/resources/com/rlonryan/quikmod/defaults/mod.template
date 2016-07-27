@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 		modid = ${ref_class}.MOD_ID,
 		name = ${ref_class}.MOD_NAME,
 		version = ${ref_class}.MOD_VERSION,
-		updateJSON = ${ref_class}.UPDATE_URL
+		updateJSON = ${ref_class}.MOD_UPDATE_URL
 )
 public class ${mod_class} {
 

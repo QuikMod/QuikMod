@@ -2,6 +2,8 @@ package com.rlonryan.quikmod
 
 import org.gradle.api.Project
 import org.gradle.api.Plugin
+import com.rlonryan.quikmod.util.*;
+import com.rlonryan.quikmod.util.PropWrapper
 import com.rlonryan.quikmod.tasks.*;
 
 class QuikMod implements Plugin<Project> {
@@ -45,11 +47,14 @@ class QuikMod implements Plugin<Project> {
 		target.processResources {
 			// this will ensure that this task is redone when the versions change.
 			inputs.property "mod", project.mod
+			
+			// Fetch Prop Wrapper
+			def wrapper = new PropWrapper(project.mod, "mod.")
 
 			// replace stuff in mcmod.info, nothing else
 			filesMatching('**/mcmod.info') {
 				filter {
-					return ModUtil.replaceModProps(project.mod, it)
+					wrapper.replace(it)
 				}
 			}
 		}

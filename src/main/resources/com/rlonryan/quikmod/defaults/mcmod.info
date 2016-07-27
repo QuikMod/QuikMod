@@ -4,7 +4,7 @@
 		"name": "${mod.name}",
 
 		"version": "${mod.version}",
-		"mcversion": "${mod.version}",
+		"mcversion": "${mod.version_minecraft}",
 
 		"logoFile": "",
 		"screenshots": [],
@@ -15,7 +15,7 @@
 		"authorList": [ "${mod.author}" ],
 		"credits": "QuikMod",
 
-		"url": "${mod.url}",
+		"url": "${mod.update_url}",
 
 		"description": "A basic QuikMod."
 	}

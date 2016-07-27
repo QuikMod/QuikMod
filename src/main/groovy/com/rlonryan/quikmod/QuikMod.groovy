@@ -45,15 +45,13 @@ class QuikMod implements Plugin<Project> {
 			inputs.property "mod", project.mod
 
 			// replace stuff in mcmod.info, nothing else
-			from(target.sourceSets.main.resources.srcDirs) {
-				include 'mcmod.info'
-				project.mod.each { prop ->
-					expand "mod.${prop.key}":prop.value
+			filesMatching('**/mcmod.info') {
+				filter {
+					project.mod.each { prop ->
+						it = it.replace('${mod.' + prop.key + '}', prop.value)
+					}
+					return it
 				}
-			}
-
-			from(target.sourceSets.main.resources.srcDirs) {
-				exclude 'mcmod.info'
 			}
 		}
 		

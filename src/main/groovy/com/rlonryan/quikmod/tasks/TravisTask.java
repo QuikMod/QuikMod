@@ -12,23 +12,23 @@ import org.gradle.api.tasks.TaskAction;
  *
  * @author RlonRyan
  */
-public class NetbeansTask extends DefaultTask {
+public class TravisTask extends DefaultTask {
 	
-	private Path netbeansPath;
+	private Path travisPath;
 
-	public NetbeansTask() {
+	public TravisTask() {
 		this.setGroup("QuikMod");
-		this.setDescription("Generates a default .nb-gradle-properties file.");
+		this.setDescription("Generates a default Travis.yml file.");
 	}
 	
 	public void initTask() {
-		this.netbeansPath = this.getProject().getProjectDir().toPath().resolve(".nb-gradle-properties");
+		this.travisPath = this.getProject().getProjectDir().toPath().resolve(".travis.yml");
 	}
 	
 	@TaskAction
 	public void runTask() throws IOException {
 		this.initTask();
-		ModUtil.copyResource(this.getClass(), "/com/rlonryan/quikmod/defaults/.nb-gradle-properties", this.netbeansPath);
+		ModUtil.copyResource(this.getClass(), "/com/rlonryan/quikmod/defaults/.travis.yml", this.travisPath);
 	}
 	
 }

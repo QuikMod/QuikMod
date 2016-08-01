@@ -6,7 +6,7 @@
       <display-name>run</display-name>
       <non-blocking>no</non-blocking>
       <task-names>
-        <name must-exist="no">runClient</name>
+        <name must-exist="no">:runClient</name>
       </task-names>
       <task-args/>
       <task-jvm-args/>
@@ -15,7 +15,7 @@
       <display-name>debug</display-name>
       <non-blocking>no</non-blocking>
       <task-names>
-        <name must-exist="no">runClient</name>
+        <name must-exist="no">:runClient</name>
         <name must-exist="no">--debug-jvm</name>
       </task-names>
       <task-args/>

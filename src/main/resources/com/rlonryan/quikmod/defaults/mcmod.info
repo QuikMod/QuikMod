@@ -6,7 +6,7 @@
 		"version": "${mod.version}",
 		"mcversion": "${mod.version_minecraft}",
 
-		"logoFile": "",
+		"logoFile": "assets/${mod.id}/textures/logo.png",
 		"screenshots": [],
 
 		"parent":"",

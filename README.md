@@ -54,5 +54,5 @@ apply plugin: 'com.rlonryan.quikmod'
   - `minecraft_password=<password>`
 
 ## Notes
-  - Generation tasks, as a safeguard, will refuse to overwrite preexisting files.
+  - Generation tasks, as a safeguard, will refuse to overwrite pre-existing files.
 

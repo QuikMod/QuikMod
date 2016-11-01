@@ -13,7 +13,7 @@ class ModPropertiesLoader {
 		defaults.load(ModPropertiesLoader.class.getResourceAsStream("defaults/mod.properties"))
 		
 		def mod = new Properties()
-		def file = new File("${target.getRootDir()}/mod.properties")
+		def file = new File("${target.getProjectDir()}/mod.properties")
 		if(!file.exists()) {
 			defaults.store(file.newWriter(), "QuikMod Mod Properties")
 		}

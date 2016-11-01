@@ -46,10 +46,10 @@ class QuikMod implements Plugin<Project> {
 		// Correct Resources
 		target.processResources {
 			// this will ensure that this task is redone when the versions change.
-			inputs.property "mod", project.mod
+			inputs.property "mod", target.mod
 			
 			// Fetch Prop Wrapper
-			def wrapper = new PropWrapper(project.mod, "mod.")
+			def wrapper = new PropWrapper(target.mod, "mod.")
 
 			// replace stuff in mcmod.info, nothing else
 			filesMatching('**/mcmod.info') {

@@ -24,19 +24,21 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            name = "forge"
+            name = "Forge Gradle"
             url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "Gradle Plugins"
+            url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'gradle.plugin.com.rlonryan:QuikMod:1.0.17'
     }
 }
 
-// Plugins
-plugins {
-	id 'com.rlonryan.quikmod' version '1.0.17'
-}
+// Apply QuikMod
+apply plugin: 'com.rlonryan.quikmod'
 ````
 
 ## Usage

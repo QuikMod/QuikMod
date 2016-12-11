@@ -1,9 +1,10 @@
 package com.rlonryan.quikmod
 
-import org.gradle.api.Project
-import org.gradle.api.Plugin
+import org.gradle.api.Project;
+import org.gradle.api.Plugin;
+import org.gradle.api.tasks.bundling.Jar;
 import com.rlonryan.quikmod.util.*;
-import com.rlonryan.quikmod.util.PropWrapper
+import com.rlonryan.quikmod.util.PropWrapper;
 import com.rlonryan.quikmod.tasks.*;
 
 class QuikMod implements Plugin<Project> {
@@ -12,11 +13,16 @@ class QuikMod implements Plugin<Project> {
 		
 		// Apply ForgeGradle
 		target.apply(plugin:'net.minecraftforge.gradle.forge')
+		
+		// Load Mod Properties
 		ModPropertiesLoader.loadModProperties(target)
+		
+		// Add Tasks
 		target.task('modInfo', type: ModInfoTask)
 		target.task('netbeans', type: NetbeansTask)
 		target.task('travis', type: TravisTask)
 		target.task('generate', type: GenerateTask)
+		target.task('javadocJar', type: Jar, dependsOn: 'build')
 		
 		target.sourceCompatibility = target.mod.version_java
 		target.targetCompatibility = target.mod.version_java
@@ -74,6 +80,12 @@ class QuikMod implements Plugin<Project> {
 			}
 		}
 		
+		// Edit Javadoc Jar Task
+		target.javadocJar {
+			from target.javadoc.destinationDir
+			classifier = 'javadoc'
+		}
+		
 		// Add login options to runClient
 		target.runClient {
 			if( target.hasProperty('minecraft_username') && target.hasProperty('minecraft_password') ) {
@@ -81,6 +93,28 @@ class QuikMod implements Plugin<Project> {
 				args "--password=${target.minecraft_password}"
 			}
 		}
+		
+		// Apply Publishing Plugin
+		target.apply(plugin:'maven-publish')
+
+		// Add publishing task
+		target.publishing {
+			publications {
+				mavenJava(MavenPublication) {
+					artifact target.jar
+					artifact target.sourceJar
+					//artifact target.javadocJar
+				}
+			}
+			repositories {
+				if (target.hasProperty('maven_repo')) {
+					maven { url target.maven_repo }
+				} else {
+					mavenLocal()
+				}
+			}
+		}
+
     }
 
 }

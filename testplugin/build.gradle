@@ -1,0 +1,17 @@
+// QuikMod Buildscript
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath files('../build/libs/QuikMod-1.0.20.jar')
+    }
+}
+
+// Apply QuikMod
+apply plugin: 'com.rlonryan.quikmod'

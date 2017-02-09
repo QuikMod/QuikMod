@@ -67,6 +67,12 @@ class QuikMod implements Plugin<Project> {
 		
 		// Add Shading Abilities
 		target.configurations {
+			javadoc {
+				transitive false
+			}
+			testJavadoc {
+				transitive false
+			}
 			shade
 			compile.extendsFrom shade
 		}
@@ -77,6 +83,15 @@ class QuikMod implements Plugin<Project> {
 				from (target.zipTree(artifact)) {
 					exclude 'META-INF', 'META-INF/**'
 				}
+			}
+		}
+		
+		// Enable Elastic Dependencies
+		target.metaClass.elastic { projectName, notation ->
+			if (allprojects.find { it.name == projectName }) {
+				project(projectName)
+			} else {
+				dependencies.create(notation)
 			}
 		}
 		
@@ -91,27 +106,6 @@ class QuikMod implements Plugin<Project> {
 			if( target.hasProperty('minecraft_username') && target.hasProperty('minecraft_password') ) {
 				args "--username=${target.minecraft_username}"
 				args "--password=${target.minecraft_password}"
-			}
-		}
-		
-		// Apply Publishing Plugin
-		target.apply(plugin:'maven-publish')
-
-		// Add publishing task
-		target.publishing {
-			publications {
-				mavenJava(MavenPublication) {
-					artifact target.jar
-					artifact target.sourceJar
-					//artifact target.javadocJar
-				}
-			}
-			repositories {
-				if (target.hasProperty('maven_repo')) {
-					maven { url target.maven_repo }
-				} else {
-					mavenLocal()
-				}
 			}
 		}
 

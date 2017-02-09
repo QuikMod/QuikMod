@@ -1,0 +1,42 @@
+/*
+*/
+package ${mod_package}.gui;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import com.github.quikmod.quiklib.gui.ModConfigGui;
+
+import java.util.Set;
+
+/*
+ * QuikMod Default GuiFactory.
+ */
+@SideOnly(Side.CLIENT)
+@SuppressWarnings("unused")
+public class GuiFactory implements IModGuiFactory {
+
+	@Override
+	public void initialize(Minecraft minecraftInstance) {
+
+	}
+
+	@Override
+	public Class<? extends GuiScreen> mainConfigGuiClass() {
+		return ModConfigGui.class;
+	}
+
+	@Override
+	public Set<IModGuiFactory.RuntimeOptionCategoryElement> runtimeGuiCategories() {
+		return null;
+	}
+
+	@Override
+	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
+		return null;
+	}
+
+}
+

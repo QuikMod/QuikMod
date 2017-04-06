@@ -28,7 +28,7 @@ class QuikMod implements Plugin<Project> {
 		target.targetCompatibility = target.mod.version_java
 		target.mod.version = "${target.mod.version_major}.${target.mod.version_minor}.${target.mod.version_patch}"
 		target.version = target.mod.version
-		target.group = "${target.mod.group}.${target.mod.id}"
+		target.group = "${target.mod.package}"
 		target.archivesBaseName = target.mod.id
 		
 		// Handle Forge Stuff

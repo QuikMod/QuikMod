@@ -1,5 +1,7 @@
-# ![QuikMod](quikmod.png)
-test
+<p align="center"> <img src="quikmod.png"/> </p>
+  
+## About
+
 QuikMod is the fastest way to get started with a ForgeGradle Minecraft Mod. All that is required is a vaild Gradle install, or a Gradle wrapper.
 
 ## Features

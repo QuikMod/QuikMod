@@ -1,5 +1,5 @@
-# QuikMod
-
+# ![QuikMod](quikmod.png)
+test
 QuikMod is the fastest way to get started with a ForgeGradle Minecraft Mod. All that is required is a vaild Gradle install, or a Gradle wrapper.
 
 ## Features
@@ -55,4 +55,3 @@ apply plugin: 'com.rlonryan.quikmod'
 
 ## Notes
   - Generation tasks, as a safeguard, will refuse to overwrite pre-existing files.
-
